@@ -29,3 +29,19 @@ va=12;
 console.log("type de va=" + typeof va);
 va=true;
 console.log("type de va=" + typeof va);
+
+let chose="abc";
+//on teste si la chose est numerique
+if(isNaN(chose)) console.log("la variable chose a un contenu pas numerique")
+    else console.log("la variable chose a un contenu numerique")
+chose=40;
+//console.log("la variable chose a un contenu " + (isNaN(chose)?"pas numerique":"numerique"));
+console.log(`la variable chose a un contenu ${isNaN(chose)?"pas numerique":"numerique"} `);
+
+let ch=null; //ou bien undefined
+//ch="";
+ch="abc"
+//tester si ch est à la fois non null et pas chaine vide
+// PAS BIEN: if(ch!="" && ch!=null) ...
+//if(ch.length!=0 && ch!=null)console.log("ch est non null et pas vide");
+if(ch!=null && ch.length!=0) console.log("ch est non null et pas vide");
