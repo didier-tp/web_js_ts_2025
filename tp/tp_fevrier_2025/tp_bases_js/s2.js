@@ -13,7 +13,8 @@ let comparateurNombresCroissants = function(va,vb){
    return va-vb;
 }
 //tabNombres.sort(comparateurNombresCroissants);
-tabNombres.sort((va,vb)=>va-vb); //tri par ordre croissant
+//tabNombres.sort((va,vb)=>va-vb); //tri par ordre croissant
+tabNombres.sort((va,vb)=>vb-va); //tri par ordre décroissant
 
 
 //En Tp : trier ces tableaux par ordre croissant et décroissant
