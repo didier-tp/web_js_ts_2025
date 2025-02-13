@@ -29,7 +29,7 @@ class Personne{
     incrementerAge(){ this.age++;}
 }
 
-//let tabPersonnes = [
+//let tabPersonnes = []
 let tabPersonnes = [new Personne("jean","Bon",30) ,
                 new Personne('alex' , 'Therieur' , 28)];
 tabPersonnes.push(new Personne('olie' , 'Condor' , 40));
@@ -40,11 +40,11 @@ console.log(`tabPersonnes=${JSON.stringify(tabPersonnes)}`)
 function calculerAgeMoyen(tabPers){
     let sommeAge=0
     for(let i in tabPers){ sommeAge += tabPers[i].age; }
-    //for(pers of tabPers){ sommeAge += pers.age; }
+    //for(let pers of tabPers){ sommeAge += pers.age; }
     return sommeAge / tabPers.length;
 }
-
-console.log(`ageMoyen=${calculerAgeMoyen(tabPersonnes)}`);
+let ageMoyen = calculerAgeMoyen(tabPersonnes);
+console.log(`ageMoyen=${ageMoyen}`);
 
 tabPersonnes.sort((pa,pb)=>pa.age - pb.age) //tri par age croissant
 console.log(`tabPersonnes trié par age=${JSON.stringify(tabPersonnes)}`)
