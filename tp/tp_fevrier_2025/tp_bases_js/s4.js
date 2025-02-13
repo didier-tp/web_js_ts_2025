@@ -27,6 +27,7 @@ class Personne{
         this.age=age;
     }
     incrementerAge(){ this.age++;}
+    rajeunir(nbAnnees){ this.age -= nbAnnees;}
 }
 
 //let tabPersonnes = []
@@ -46,10 +47,10 @@ function calculerAgeMoyen(tabPers){
 let ageMoyen = calculerAgeMoyen(tabPersonnes);
 console.log(`ageMoyen=${ageMoyen}`);
 
-tabPersonnes.sort((pa,pb)=>pa.age - pb.age) //tri par age croissant
+tabPersonnes.sort((pa,pb)=>pa.age - pb.age); //tri par age croissant
 console.log(`tabPersonnes trié par age=${JSON.stringify(tabPersonnes)}`)
 
-tabPersonnes.sort((pa,pb)=>pa.nom.localeCompare(pb.nom)) //tri par nom croissant
+tabPersonnes.sort((pa,pb)=>pa.nom.localeCompare(pb.nom)); //tri par nom croissant
 console.log(`tabPersonnes trié par nom=${JSON.stringify(tabPersonnes)}`)
 
 //incrementer age de toutes les personnes:

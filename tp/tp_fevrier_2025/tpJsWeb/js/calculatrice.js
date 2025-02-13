@@ -12,6 +12,21 @@ window.onload=function(){
         document.getElementById("inputA").value="";
         document.getElementById("inputB").value="";
     });
+
+    let btncbShowHisto = document.getElementById("cbShowHisto");
+    //btncbShowHisto.addEventListener('click',function(){
+        btncbShowHisto.addEventListener('change',function(event){
+        console.log(`type de event=${event.type}`)
+        console.log(`id de la balise où l'évènement a eu lieu=${event.target.id}`)
+        console.log(`type de balise où l'évènement a eu lieu=${event.target.nodeName}`)
+        console.log(`valeur associée à l'événement=${event.target.checked}`)
+        let estCoche=event.target.checked;
+        //let estCoche = btncbShowHisto.checked;
+        console.log(`estCoche= ${estCoche}`);
+        let ulHisto = document.getElementById("ulHisto");
+        //ulHisto.style.visibility=estCoche?"visible":"hidden";
+        ulHisto.style.display=estCoche?"block":"none";
+    });
 }
 
 function onAdditionner(){
