@@ -28,4 +28,10 @@ function onAdditionner(){
     baliseB.appendChild(document.createTextNode(resAdd));
     spanRes.appendChild(baliseB);
     */
+    let baliseLi = document.createElement("li");
+    let textCalcul=`${valueA} + ${valueB} = ${resAdd}`
+    baliseLi.appendChild(document.createTextNode(textCalcul));
+    let ulHisto = document.getElementById("ulHisto");
+    ulHisto.appendChild(baliseLi);
+
 }
