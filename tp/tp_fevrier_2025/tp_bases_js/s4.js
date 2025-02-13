@@ -55,3 +55,14 @@ for(p of tabPersonnes) {
     p.incrementerAge();
 }
 console.log(`ageMoyen=${calculerAgeMoyen(tabPersonnes)}`);
+
+//possible mais un peu moins bien car l'objet javascript litteral
+//n'a pas de méthode incrémenterAge()et pas vu comme instanceof Personne
+tabPersonnes.push( { prenom : "lucky" , nom : "Luke" , age : 55});
+
+console.log(`nouveau tabPersonnes=${JSON.stringify(tabPersonnes)}`);
+
+let tradFrancaisAnglais={};
+tradFrancaisAnglais["rouge"]="red";
+tradFrancaisAnglais["vert"]="green";
+console.log(`tradFrancaisAnglais=${JSON.stringify(tradFrancaisAnglais)}`);
