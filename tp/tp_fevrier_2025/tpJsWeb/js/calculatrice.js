@@ -3,7 +3,8 @@ window.onload=function(){
     let btnAdditionner = document.getElementById("btnAdditionner");
     btnAdditionner.addEventListener('click',onAdditionner);
 
-    let btnClear = document.getElementById("btnClear");
+    //let btnClear = document.getElementById("btnClear");
+    let btnClear = document.querySelector("#btnClear"); //même sélecteur que css
     btnClear.addEventListener('click',()=>{
         //zoneInput.value pour récupérer ou modifier la valeur du champ
         //zoneSpanOuDiv.innerText pour changer le texte imbriqué
