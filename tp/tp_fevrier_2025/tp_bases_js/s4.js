@@ -1,3 +1,4 @@
+'use strict'
 /*
 classe Personne avec prenom,nom,age
        et methode incrementerAge()
@@ -28,7 +29,8 @@ class Personne{
     incrementerAge(){ this.age++;}
 }
 
-tabPersonnes = [new Personne("jean","Bon",30) ,
+//let tabPersonnes = [
+let tabPersonnes = [new Personne("jean","Bon",30) ,
                 new Personne('alex' , 'Therieur' , 28)];
 tabPersonnes.push(new Personne('olie' , 'Condor' , 40));
 tabPersonnes.push(new Personne('alain' , 'Therieur' , 27));
@@ -37,7 +39,7 @@ console.log(`tabPersonnes=${JSON.stringify(tabPersonnes)}`)
 
 function calculerAgeMoyen(tabPers){
     let sommeAge=0
-    for(i in tabPers){ sommeAge += tabPers[i].age; }
+    for(let i in tabPers){ sommeAge += tabPers[i].age; }
     //for(pers of tabPers){ sommeAge += pers.age; }
     return sommeAge / tabPers.length;
 }
@@ -51,7 +53,7 @@ tabPersonnes.sort((pa,pb)=>pa.nom.localeCompare(pb.nom)) //tri par nom croissant
 console.log(`tabPersonnes trié par nom=${JSON.stringify(tabPersonnes)}`)
 
 //incrementer age de toutes les personnes:
-for(p of tabPersonnes) {
+for(let p of tabPersonnes) {
     p.incrementerAge();
 }
 console.log(`ageMoyen=${calculerAgeMoyen(tabPersonnes)}`);
