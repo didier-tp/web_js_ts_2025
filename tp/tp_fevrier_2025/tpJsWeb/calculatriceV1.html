@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+           function onAdditionner(){
+                let inputA = document.getElementById("inputA");
+                let valueA = inputA.value; //récupérer la valeur saisie
+                console.log("valueA="+valueA);
+                let valueB = document.getElementById("inputB").value;
+                let resAdd = Number(valueA) + Number(valueB);
+                let spanRes = document.getElementById("spanRes");
+                spanRes.innerText=resAdd;
+            }
+        </script>
+    </head>
+    <body>
+        <label>a:</label><input id="inputA" /> <br/>
+        <label>b:</label><input id="inputB" /> <br/>
+        <button  onclick="onAdditionner()">additionner</button> <br/>
+        <label>res:</label> <span id="spanRes"></span>
+    </body>
+</html>
