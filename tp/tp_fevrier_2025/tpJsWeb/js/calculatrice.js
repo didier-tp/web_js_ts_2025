@@ -21,5 +21,11 @@ function onAdditionner(){
     let resAdd = Number(valueA) + Number(valueB);
     console.log(`valueA=${valueA} valueB=${valueB}  resAdd=${resAdd}`);
     let spanRes = document.getElementById("spanRes");
-    spanRes.innerText=resAdd;
+    //spanRes.innerText=resAdd;
+    spanRes.innerHTML="<b>"+resAdd+"</b>";
+    /*
+    let baliseB = document.createElement("b")
+    baliseB.appendChild(document.createTextNode(resAdd));
+    spanRes.appendChild(baliseB);
+    */
 }
