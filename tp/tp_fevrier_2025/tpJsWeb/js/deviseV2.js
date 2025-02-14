@@ -20,14 +20,14 @@ function traiterErreur(erreur){
 }
 
 function traiterReponseDevises(responseJsObject){
-    console.log(`response=${responseJsObject}`);
+    console.log(`response=${JSON.stringify(responseJsObject)}`);
     let listeDevises = responseJsObject;
     for(let objDevise of listeDevises){
         ajouterDeviseDansTableauHTML(objDevise)
        }
 }
 
-function onRecherche(){
+function onRechercheSansAsyncAwait(){
     //let url = "data/devises_locales.json";
    let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises";
    fetch(url)
@@ -40,6 +40,22 @@ function onRecherche(){
     })
     .then((responseJsonAsJsObject) => { traiterReponseDevises(responseJsonAsJsObject) })
     .catch((err)=>{ traiterErreur(err) });
+}
+
+async function onRecherche(){
+    //let url = "data/devises_locales.json";
+   let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises";
+   try{
+        let response = await fetch(url);
+        if(response.status != 200) { 
+            let messageErreur="echec ajax " + response.status;
+            console.log(messageErreur);
+             throw messageErreur; } 
+        let responseJsonAsJsObject = await response.json();
+        traiterReponseDevises(responseJsonAsJsObject);
+   }catch(err){
+       traiterErreur(err);
+   }
 }
 
 function recupererDeviseSaisie(){
