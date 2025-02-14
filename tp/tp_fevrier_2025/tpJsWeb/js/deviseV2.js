@@ -72,15 +72,30 @@ function onAjout(){
     ajouterDeviseDansTableauHTML(objDevise);
 }
 
-function traiterReponseEnvoi(reponse){
-    console.log(`reponseEnvoi=${reponse}`)
+function traiterReponseEnvoi(reponseAsJsObject){
+    console.log(`reponseEnvoi=${JSON.stringify(reponseAsJsObject)}`)
 }
 
 function onEnvoi(){
     let objDevise = recupererDeviseSaisie();
     let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises";
-    makeAjaxPostRequest(url , JSON.stringify(objDevise) ,
-                             traiterReponseEnvoi, traiterErreur);
+    fetch(url,{
+        method: 'POST' ,
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(objDevise)
+    })
+    .then((response)=>{ 
+        if(response.status != 200 && response.status != 201 ) { 
+            let messageErreur="echec ajax " + response.status;
+            console.log(messageErreur);
+             throw messageErreur; }
+        return response.json();
+    })
+    .then((responseJsonAsJsObject) => { traiterReponseEnvoi(responseJsonAsJsObject) })
+    .catch((err)=>{ traiterErreur(err) });
 }
 
 function ajouterDeviseDansTableauHTML(objDevise){
