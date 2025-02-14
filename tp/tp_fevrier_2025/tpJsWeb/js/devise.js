@@ -5,7 +5,12 @@ window.onload=function(){
 
     let btnRecherche = document.getElementById("btnRecherche");
     btnRecherche.addEventListener('click',onRecherche);
+
+    let btnEnvoi = document.getElementById("btnEnvoi");
+    btnEnvoi.addEventListener('click',onEnvoi);
 }
+
+
 
 function traiterReponseDevises(responseJson){
     console.log(`response=${responseJson}`);
@@ -27,30 +32,45 @@ function onRecherche(){
    makeAjaxGetRequest(url ,traiterReponseDevises,traiterErreur);
 }
 
-function onAjout(){
-let spanMessage = document.getElementById("spanMessage");
-spanMessage.innerHTML="";
-// récupérer valeur saisies sous forme d'objet javascript
-let inputCode=document.querySelector("input[name=code]")
-//console.log(`code=${inputCode.value}`)
-let inputName=document.querySelector("input[name=name]")
-let inputChange=document.querySelector("input[name=change]")
-let changeSaisi = inputChange.value;
-//on vérifie via isNaN() si changeSaisi est numerique ou pas
-if(isNaN(changeSaisi)){
-    //si pas numerique on affiche (en rouge) un message d'erreur dans "spanMessage"
-    spanMessage.innerHTML="le taux de change n'est pas numerique";
-    spanMessage.style.color="red";
-    return; //sans executer fin de fonction
+function recupererDeviseSaisie(){
+    let spanMessage = document.getElementById("spanMessage");
+    spanMessage.innerHTML="";
+    // récupérer valeur saisies sous forme d'objet javascript
+    let inputCode=document.querySelector("input[name=code]")
+    //console.log(`code=${inputCode.value}`)
+    let inputName=document.querySelector("input[name=name]")
+    let inputChange=document.querySelector("input[name=change]")
+    let changeSaisi = inputChange.value;
+    //on vérifie via isNaN() si changeSaisi est numerique ou pas
+    if(isNaN(changeSaisi)){
+        //si pas numerique on affiche (en rouge) un message d'erreur dans "spanMessage"
+        spanMessage.innerHTML="le taux de change n'est pas numerique";
+        spanMessage.style.color="red";
+        return; //sans executer fin de fonction
+    }
+    //si numerique on ajoute la ligne dans le tableau
+    
+    let objDevise = { code : inputCode.value ,
+                      name : inputName.value,
+                      change : Number(changeSaisi) };
+    console.log(`objDevise=${JSON.stringify(objDevise)}`)
+    return objDevise;
 }
-//si numerique on ajoute la ligne dans le tableau
 
-let objDevise = { code : inputCode.value ,
-                  name : inputName.value,
-                  change : Number(changeSaisi) };
-console.log(`objDevise=${JSON.stringify(objDevise)}`)
+function onAjout(){
+    let objDevise = recupererDeviseSaisie();
+    ajouterDeviseDansTableauHTML(objDevise);
+}
 
-ajouterDeviseDansTableauHTML(objDevise);
+function traiterReponseEnvoi(reponse){
+    console.log(`reponseEnvoi=${reponse}`)
+}
+
+function onEnvoi(){
+    let objDevise = recupererDeviseSaisie();
+    let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises";
+    makeAjaxPostRequest(url , JSON.stringify(objDevise) ,
+                             traiterReponseEnvoi, traiterErreur);
 }
 
 function ajouterDeviseDansTableauHTML(objDevise){
