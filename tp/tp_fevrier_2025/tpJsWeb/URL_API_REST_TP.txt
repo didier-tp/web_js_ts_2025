@@ -1,0 +1,4 @@
+https://www.d-defrance.fr/tp/devise-api/v1/public/devises
+ou
+https://www.d-defrance.fr/tp/devise-api/v1/public/devises/EUR
+https://www.d-defrance.fr/tp/devise-api/v1/public/devises/USD
