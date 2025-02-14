@@ -23,7 +23,7 @@ function traiterErreur(erreur){
 
 function onRecherche(){
     //let url = "data/devises_locales.json";
-   let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises/AAAAAA";
+   let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises";
    makeAjaxGetRequest(url ,traiterReponseDevises,traiterErreur);
 }
 
