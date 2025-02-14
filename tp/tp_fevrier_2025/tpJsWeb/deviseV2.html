@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="js/deviseV2.js"></script>
+    </head>
+    <body>
+        <h1>DEVISES (avec api fetch et Promise)</h1>
+        <form>
+            <label>code:</label><input name="code" /> <br/>
+            <label>name:</label><input name="name" /> <br/>
+            <label>change:</label><input name="change" /> <br/>
+        </form>
+        <button id="btnAjout">ajout direct</button> <br/>
+        <button id="btnEnvoi">envoi vers serveur</button> <br/>
+        <span id="spanMessage"></span>
+        <hr/>
+        <button id="btnRecherche">rechercher via ajax</button> <br/>
+        <hr/>
+        <table border=1>
+            <thead>
+                <tr><th>code</th><th>name</th><th>change</th></tr>
+            </thead>
+            <tbody id="tBody">
+               <!-- <tr><td>EUR</td><td>Euro</td>td>1.1</td></tr> -->
+            </tbody>
+        </table>    
+    </body>
+</html>
