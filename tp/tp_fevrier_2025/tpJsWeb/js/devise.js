@@ -3,6 +3,28 @@ window.onload=function(){
     let btnAjout = document.getElementById("btnAjout");
     btnAjout.addEventListener('click',onAjout);
 
+    let btnRecherche = document.getElementById("btnRecherche");
+    btnRecherche.addEventListener('click',onRecherche);
+}
+
+function traiterReponseDevises(responseJson){
+    console.log(`response=${responseJson}`);
+    let listeDevises = JSON.parse(responseJson);
+    for(let objDevise of listeDevises){
+        ajouterDeviseDansTableauHTML(objDevise)
+       }
+}
+function traiterErreur(erreur){
+    console.log(`erreur=${erreur}`);
+    let spanMessage = document.getElementById("spanMessage");
+    spanMessage.innerHTML=erreur;
+    spanMessage.style.color="red";
+}
+
+function onRecherche(){
+    //let url = "data/devises_locales.json";
+   let url = "https://www.d-defrance.fr/tp/devise-api/v1/public/devises/AAAAAA";
+   makeAjaxGetRequest(url ,traiterReponseDevises,traiterErreur);
 }
 
 function onAjout(){
@@ -28,13 +50,17 @@ let objDevise = { code : inputCode.value ,
                   change : Number(changeSaisi) };
 console.log(`objDevise=${JSON.stringify(objDevise)}`)
 
-// ajout des valeurs dans une nouvelle ligne du tableau
-let eltTBody = document.getElementById("tBody");
-let newRow = eltTBody.insertRow(-1) ; //new <tr> and .appendChild()
-let newCellCode = newRow.insertCell(0);  //new <td> and .appendChild()
-newCellCode.innerText = objDevise.code;
-let newCellName = newRow.insertCell(1);  //new <td> and .appendChild()
-newCellName.innerText = objDevise.name;
-let newCellChange = newRow.insertCell(2);  //new <td> and .appendChild()
-newCellChange.innerText = objDevise.change;
+ajouterDeviseDansTableauHTML(objDevise);
+}
+
+function ajouterDeviseDansTableauHTML(objDevise){
+    // ajout des valeurs dans une nouvelle ligne du tableau
+    let eltTBody = document.getElementById("tBody");
+    let newRow = eltTBody.insertRow(-1) ; //new <tr> and .appendChild()
+    let newCellCode = newRow.insertCell(0);  //new <td> and .appendChild()
+    newCellCode.innerText = objDevise.code;
+    let newCellName = newRow.insertCell(1);  //new <td> and .appendChild()
+    newCellName.innerText = objDevise.name;
+    let newCellChange = newRow.insertCell(2);  //new <td> and .appendChild()
+    newCellChange.innerText = objDevise.change;
 }
